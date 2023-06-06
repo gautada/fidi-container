@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  firefly-data-import:
+    build:
+      args:
+        ALPINE_VERSION: "latest"
+        CONTAINER_VERSION: "1.3.0"
+      context: .
+      dockerfile: container.build
+      no_cache: true
+      tags:
+        - "firefly-data-import:dev"
+        - "gautada/firefly-data-import:dev"
+    image: "firefly-data-import:dev"
+    hostname: "firefly-data-import"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "container:/mnt/volumes/container"
+      - "backup:/mnt/volumes/backup"
+
+volumes:
+  container:
+    external: true
+    name: Container
+  backup:
+    external: true
+    name: Backup
+
