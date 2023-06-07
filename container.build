@@ -38,17 +38,16 @@ WORKDIR /opt
 RUN /usr/local/bin/composer create-project firefly-iii/data-importer --no-dev \
                   --prefer-dist data-importer $CONTAINER_VERSION
 
-# RUN /bin/rm /opt/data-importer/.env \
-#  && /bin/ln -fsv /etc/container/data-importer.env /opt/data-importer/.env \
-#  && /bin/ln -fsv /mnt/volumes/configmaps/data-importer.env /etc/container/data-importer.env \
-RUN /bin/chown $USER:www-data -R /opt/data-importer \
+RUN /bin/rm /opt/data-importer/.env \
+ && /bin/ln -fsv /etc/container/fidi.env /opt/data-importer/.env \
+ && /bin/ln -fsv /mnt/volumes/configmaps/fidi.env /etc/container/fidi.env \
+ && /bin/chown $USER:www-data -R /opt/data-importer \
  && /bin/rm /etc/nginx/http.d/default.conf \
- && /bin/ln -fsv /etc/container/data-importer.conf /etc/nginx/http.d/data-importer.conf \
- && /bin/ln -fsv /mnt/volumes/configmaps/data-importer.conf /etc/container/data-importer.conf
-#  # && ls -l
+ && /bin/ln -fsv /etc/container/fidi.conf /etc/nginx/http.d/fidi.conf \
+ && /bin/ln -fsv /mnt/volumes/configmaps/fidi.conf /etc/container/fidi.conf
 
-# COPY dta-importer.env /mnt/volumes/configmaps/data-importer.env
-COPY data-importer.conf /mnt/volumes/configmaps/data-importer.conf
+COPY fidi.env /mnt/volumes/configmaps/fidi.env
+COPY fidi.conf /mnt/volumes/configmaps/fidi.conf
 
 RUN chmod 777 /mnt/volumes/container
 # ╭――――――――――――――――――――╮
