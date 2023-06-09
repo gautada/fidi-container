@@ -9,10 +9,10 @@ services:
       dockerfile: container.build
       no_cache: true
       tags:
-        - "firefly-data-import:dev"
-        - "gautada/firefly-data-import:dev"
-    image: "firefly-data-import:dev"
-    hostname: "firefly-data-import"
+        - "fidi:dev"
+        - "gautada/fidi:dev"
+    image: "fidi:dev"
+    hostname: "fidi"
     ports:
       - "8080:8080"
     volumes:
