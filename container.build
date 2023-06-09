@@ -38,6 +38,7 @@ WORKDIR /opt
 RUN /usr/local/bin/composer create-project firefly-iii/data-importer --no-dev \
                   --prefer-dist data-importer $CONTAINER_VERSION
 
+RUN /bin/ln -fsv /opt/data-importer/public /opt/data-importer/public/import
 RUN /bin/rm /opt/data-importer/.env \
  && /bin/ln -fsv /etc/container/fidi.env /opt/data-importer/.env \
  && /bin/ln -fsv /mnt/volumes/configmaps/fidi.env /etc/container/fidi.env \
