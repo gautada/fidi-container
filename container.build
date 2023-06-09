@@ -57,7 +57,7 @@ RUN chmod 777 /mnt/volumes/container
 # COPY podman.health /etc/container/health.d/podman.health
 COPY entrypoint /etc/container/entrypoint
 COPY privileges /etc/container/privileges
-COPY setup /etc/container/setup
+# COPY setup /etc/container/setup
 
 # ╭――――――――――――――――――――╮
 # │ CONTAINER          │
@@ -76,7 +76,7 @@ WORKDIR /home/$USER
 # RUN /bin/chmod 777 /opt/firefly/firefly.sql
 # RUN /bin/chmod 777 /opt/firefly
 
-#╭――――――――――――――――――――╮
+# ╭――――――――――――――――――――╮
 # │FINAL CONTAINER     │
 # ╰――――――――――――――――――――╯
 FROM scratch
